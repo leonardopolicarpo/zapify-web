@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zapify | Web
 
-## Getting Started
+> 🇧🇷 Read in Portuguese: [README.pt-BR.md](./README.pt-BR.md)
 
-First, run the development server:
+Frontend for **Zapify**, a real-time chat platform designed for testing and evolving modern web development practices.
+
+This repository contains the web interface developed with **Next.js** and styled with **Tailwind CSS**, aiming for responsiveness, simplicity, and real-time interaction via WebSockets.
+
+---
+
+## 📚 Table of Contents
+
+- [📄 Description](#-description)
+- [🛠 Technologies](#-technologies)
+- [📁 Project Structure](#-project-structure)
+- [▶️ Getting Started](#-getting-started)
+- [📌 Documentation & Project Board](#-documentation--project-board)
+- [🧠 Author & Contact](#-author--contact)
+
+---
+
+## 📄 Description
+
+Zapify Web is the user interface for the Zapify platform. It handles user login/signup, real-time chat, WebSocket integration, and user experience improvements like message notifications and typing indicators.
+
+The current focus is on building a solid MVP with clean architecture and scalable code, allowing new features to be added easily.
+
+---
+
+## 🛠 Technologies
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Zod](https://zod.dev/) (schema validation)
+- [Socket.IO Client](https://socket.io/)
+
+---
+
+## 📁 Project Structure
+
+```bash
+zapify-web/
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── context/
+│   ├── hooks/
+│   ├── services/
+│   ├── styles/
+│   ├── types/
+│   └── utils/
+├── public/
+├── .env.local
+├── tailwind.config.js
+├── tsconfig.json
+└── package.json
+```
+
+
+## ▶️ Getting Started
+
+1- Clone the repository:
+
+```bash
+git clone https://github.com/leonardopolicarpo/zapify-web
+```
+
+2- Install dependencies:
+
+```bash
+npm install
+```
+
+3- Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📌 Documentation & Project Board
 
-## Learn More
+📋 [Kanban Project Board (Zapify Backend)](https://github.com/users/leonardopolicarpo/projects/3)
 
-To learn more about Next.js, take a look at the following resources:
+## 🧠 Author & Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Developed by [Leonardo Policarpo](https://github.com/leonardopolicarpo)
+🔗 LinkedIn: [Leonardo Policarpo](https://www.linkedin.com/in/leonardodumont/)
