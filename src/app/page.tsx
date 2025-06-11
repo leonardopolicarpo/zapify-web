@@ -134,7 +134,7 @@ export default function Home() {
               Entrar
             </motion.a>
             <motion.a
-              href="/signup"
+              href="/chat"
               className="bg-[#1F6FEB] text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 active:bg-blue-800 transition-colors duration-300 shadow-lg shadow-[#1F6FEB]/30 hover:shadow-[#1F6FEB]/50 w-full sm:w-auto cursor-pointer"
               whileHover={{ scale: 1.05, y: -2, boxShadow: "0px 8px 20px rgba(31, 111, 235, 0.5)" }}
               whileTap={{ scale: 0.95 }}
