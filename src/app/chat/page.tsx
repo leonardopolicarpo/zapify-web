@@ -1,38 +1,128 @@
-'use client';
-import { useState } from 'react';
-import { ChatWindow, MessageInterface } from '@/components/chat/ChatWindow';
-import { MessageInput } from '@/components/chat/MessageInput';
-import { ChatHeader } from '@/components/chat/ChatHeader';
+'use client'
 
-export default function ChatPage() {
+import { useState } from "react";
+import { Sidebar } from "@/components/sidebar"
+import { ChatWindow } from "@/components/chat-window";
+
+import { mockConversations } from "@/mock-data/mock-conversations";
+import { mockMessages } from "@/mock-data/mock-messages";
+
+const ChatApp = () => {
+  const [conversations, setConversations] = useState<Conversation[]>(mockConversations);
+  const [activeConversationId, setActiveConversationId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<Record<string, Message[]>>(mockMessages);
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState<MessageInterface[]>([
-    { id: '1', text: 'Oi!', sender: 'other' },
-    { id: '2', text: 'E aí!', sender: 'me' },
-  ]);
 
+  const activeConversation = conversations.find(c => c.id === activeConversationId) || null;
+  const currentMessages = activeConversationId ? messages[activeConversationId] || [] : [];
 
-  const handleSend = (text: string) => {
-    setMessages((prev) => [
+  const handleSendMessage = (content: string) => {
+    if (!activeConversationId) return;
+
+    const newMessage: Message = {
+      id: Date.now().toString(),
+      content,
+      timestamp: new Date(),
+      sender: { id: '1', name: 'Você', type: 'user' },
+      isOwn: true,
+      status: 'sent',
+    };
+
+    setMessages(prev => ({
       ...prev,
-      { id: '10', text, sender: 'me' },
-    ]);
+      [activeConversationId]: [...(prev[activeConversationId] || []), newMessage],
+    }));
 
-    setIsTyping(true);
+    // Update conversation last message
+    setConversations(prev => prev.map(conv => 
+      conv.id === activeConversationId 
+        ? { ...conv, lastMessage: content, timestamp: new Date(), isTyping: false }
+        : conv
+    ));
+
+    // Simulate message status updates
     setTimeout(() => {
-      setMessages((prev) => [
+      setMessages(prev => ({
         ...prev,
-        { id: '10', text: 'Beleza!', sender: 'other' },
-      ]);
-      setIsTyping(false);
-    }, 5000);
+        [activeConversationId]: prev[activeConversationId]?.map(msg => 
+          msg.id === newMessage.id ? { ...msg, status: 'delivered' } : msg
+        ) || []
+      }));
+    }, 1000);
+
+    setTimeout(() => {
+      setMessages(prev => ({
+        ...prev,
+        [activeConversationId]: prev[activeConversationId]?.map(msg => 
+          msg.id === newMessage.id ? { ...msg, status: 'read' } : msg
+        ) || []
+      }));
+    }, 2000);
+
+    // Simulate AI/contact response
+    if (activeConversation?.type === 'ai' || activeConversation?.type === 'direct') {
+      // Show typing indicator
+      setIsTyping(true);
+      setConversations(prev => prev.map(conv => 
+        conv.id === activeConversationId 
+          ? { ...conv, isTyping: true }
+          : conv
+      ));
+
+      setTimeout(() => {
+        setIsTyping(false);
+        setConversations(prev => prev.map(conv => 
+          conv.id === activeConversationId 
+            ? { ...conv, isTyping: false }
+            : conv
+        ));
+
+        const responseContent = activeConversation?.type === 'ai' 
+          ? 'Esta é uma resposta simulada do assistente IA. Em um ambiente real, isso seria processado por um backend.'
+          : 'Obrigado pela mensagem! Esta é uma resposta simulada.';
+
+        const response: Message = {
+          id: (Date.now() + 1).toString(),
+          content: responseContent,
+          timestamp: new Date(),
+          sender: { 
+            id: activeConversation?.type === 'ai' ? 'ai' : '2', 
+            name: activeConversation?.title || 'Contato', 
+            type: activeConversation?.type === 'ai' ? 'ai' : 'contact' 
+          },
+          isOwn: false,
+          status: 'sent',
+        };
+
+        setMessages(prev => ({
+          ...prev,
+          [activeConversationId]: [...(prev[activeConversationId] || []), response],
+        }));
+
+        setConversations(prev => prev.map(conv => 
+          conv.id === activeConversationId 
+            ? { ...conv, lastMessage: responseContent, timestamp: new Date() }
+            : conv
+        ));
+      }, 1500 + Math.random() * 1000); // Random delay between 1.5-2.5s
+    }
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-md mx-auto border border-zinc-300 dark:border-zinc-700 rounded shadow bg-zinc-50 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100">
-      <ChatHeader title="Chat com Fulano" />
-      <ChatWindow messages={messages} isTyping={isTyping} />
-      <MessageInput onSend={handleSend} />
+    <div className="h-screen flex bg-gray-100 overflow-hidden">
+      <Sidebar
+        conversations={conversations}
+        activeConversationId={activeConversationId}
+        onConversationSelect={setActiveConversationId}
+      />
+      <ChatWindow
+        conversation={activeConversation}
+        messages={currentMessages}
+        onSendMessage={handleSendMessage}
+        isTyping={isTyping}
+      />
     </div>
   );
-}
+};
+
+export default ChatApp;
