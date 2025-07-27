@@ -6,6 +6,8 @@ import { ChatWindow } from "@/components/chat-window";
 
 import { mockConversations } from "@/mock-data/mock-conversations";
 import { mockMessages } from "@/mock-data/mock-messages";
+import { Message } from "@/types/message";
+import { Conversation } from "@/types/conversation";
 
 const ChatApp = () => {
   const [conversations, setConversations] = useState<Conversation[]>(mockConversations);

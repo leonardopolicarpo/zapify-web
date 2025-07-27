@@ -1,4 +1,4 @@
-interface Conversation {
+export interface Conversation {
   id: string;
   title: string;
   type: 'direct' | 'group' | 'ai';

@@ -2,13 +2,14 @@ import { Bot, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Avatar } from './avatar';
 import { conversationVariants } from '@/styles/anaimation-variants/conversation';
+import { Conversation } from '@/types/conversation';
 
 export const ConversationItem = ({ 
   conversation, 
   isActive, 
   onClick 
 }: { 
-  conversation: Conversation; 
+  conversation: Conversation;
   isActive: boolean; 
   onClick: () => void; 
 }) => {

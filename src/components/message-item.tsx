@@ -1,6 +1,7 @@
 import { Avatar } from "@/components/avatar";
 import { MessageStatus } from "@/components/message-status";
 import { messageVariants } from "@/styles/anaimation-variants/message";
+import { Message } from "@/types/message";
 import { motion } from "framer-motion";
 
 export const MessageItem = ({ message }: { message: Message }) => {

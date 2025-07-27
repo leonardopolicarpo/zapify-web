@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ConversationItem } from "./conversation-item";
+import { Conversation } from "@/types/conversation";
 
 export const Sidebar = ({ 
   conversations, 

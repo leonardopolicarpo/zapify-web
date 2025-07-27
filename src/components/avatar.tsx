@@ -1,7 +1,7 @@
 import { User, Bot } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export const Avatar = ({ name, type, isOnline }: { name: string; type: 'user' | 'ai' | 'contact'; isOnline?: boolean }) => {
+export const Avatar = ({ /* name, */ type, isOnline }: { name: string; type: 'user' | 'ai' | 'contact'; isOnline?: boolean }) => {
   const getIcon = () => {
     switch (type) {
       case 'ai':
