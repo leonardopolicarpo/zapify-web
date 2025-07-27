@@ -5,6 +5,8 @@ import { ChatHeader } from '@/components/chat-header';
 import { MessageInput } from '@/components/message-input';
 import { MessageItem } from '@/components/message-item';
 import { TypingIndicator} from '@/components/type-indicator';
+import { Conversation } from "@/types/conversation";
+import { Message } from "@/types/message";
 
 export const ChatWindow = ({ 
   conversation, 
