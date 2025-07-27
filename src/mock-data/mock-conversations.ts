@@ -1,0 +1,37 @@
+export const mockConversations: Conversation[] = [
+  {
+    id: '1',
+    title: 'João Silva',
+    type: 'direct',
+    lastMessage: 'Oi, tudo bem?',
+    timestamp: new Date('2024-01-15T10:30:00'),
+    unreadCount: 2,
+    isOnline: true,
+  },
+  {
+    id: '2',
+    title: 'Equipe de Desenvolvimento',
+    type: 'group',
+    lastMessage: 'Vamos fazer a reunião às 14h',
+    timestamp: new Date('2024-01-15T09:15:00'),
+    unreadCount: 0,
+    participants: ['João', 'Maria', 'Pedro', 'Ana'],
+  },
+  {
+    id: '3',
+    title: 'Assistente IA',
+    type: 'ai',
+    lastMessage: 'Como posso ajudar você hoje?',
+    timestamp: new Date('2024-01-15T08:45:00'),
+    unreadCount: 0,
+  },
+  {
+    id: '4',
+    title: 'Maria Santos',
+    type: 'direct',
+    lastMessage: 'Perfeito! Muito obrigada pela ajuda',
+    timestamp: new Date('2024-01-14T16:20:00'),
+    unreadCount: 0,
+    isOnline: false,
+  },
+];

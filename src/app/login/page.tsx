@@ -9,7 +9,7 @@ export default function LoginPage() {
 
   const handleLogin = (name: string, email: string) => {
     login({ name, email });
-    router.push('/');
+    router.push('/chat');
   }
 
   return (
