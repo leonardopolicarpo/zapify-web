@@ -1,6 +1,7 @@
 import { MoreVertical, Phone, Video, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Avatar } from './avatar';
+import { Conversation } from '@/types/conversation';
 
 export const ChatHeader = ({ conversation }: { conversation: Conversation | null }) => {
   if (!conversation) return null;
