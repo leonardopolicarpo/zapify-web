@@ -1,3 +1,5 @@
+import { Message } from "@/types/message";
+
 export const mockMessages: Record<string, Message[]> = {
   '1': [
     {
